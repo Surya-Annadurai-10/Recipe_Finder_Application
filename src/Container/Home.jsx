@@ -71,10 +71,10 @@ const Home = () => {
     
   return (
     //bg-[#FF5200]
-    <section className="w-full min-h-[90vh]  bg-[#FF5200]">
+    <section className="w-full min-h-[90vh] relative bg-[#FF5200]">
       <div className="flex items-center justify-between w-full h-full">
-        <img src={left} className="w-[20%]" alt="" />
-        <div className="w-full h-[100%] flex items-center gap-10 justify-center flex-col ">
+        <img src={left} className="md:w-[30%]  lg:w-[20%]" alt="" />
+        <div className="w-full h-[100%] flex md:absolute items-center gap-10 justify-center flex-col ">
            <div className="flex items-center justify-center gap-3 w-[70%]">
            <div  className="flex border border-[grey]  bg-white rounded-xl h-[60px] w-[30%] items-center justify-center">
                 <select onChange={(e) => setSearchBy(e.target.value)}  className="w-full h-full p-3 text-xl font-bold text-[#7e7e7e] outline-none" name="" id="">
@@ -93,8 +93,8 @@ const Home = () => {
 
           </div>
            </div>
-          <div className="flex items-center justify-center ">
-            <div className=" bg-white relative rounded-4xl h-[230px] w-[70%] p-8">
+          <div className="flex items-center  justify-center ">
+            <div className=" bg-white shadow-[0px_0px_5px_white] relative rounded-4xl h-[230px] w-[70%] p-8">
               
               <h1 className="font-[900] flex gap-2 text-4xl"> <span><PiCookingPotFill/></span>Find It. Cook It. Love It</h1>
               <div className="flex items-center justify-start">
@@ -107,13 +107,13 @@ const Home = () => {
           
           </div>
         </div>
-        <img className="w-[20%]" src={right} alt="" />
+        <img className="md:w-[30%] lg:w-[20%]" src={right} alt="" />
       </div>
 
      {
-        recipes.length > 0 ?  <div className=" w-full bg-white p-10 ">
+        recipes.length > 0 ?  <div className=" w-full  bg-white md:py-10 md:px-4 lg:p-10 ">
         <h1 className="text-4xl font-bold pb-10">Recipes you may Like :</h1>
-        <div className="flex flex-wrap gap-10">
+        <div className="flex md:justify-center md:items-center flex-wrap gap-10">
         {
           recipes.map((ele, i ) =>{
               return <RecipeCard key={`${ele.id}_${i}}`} {...ele} />
