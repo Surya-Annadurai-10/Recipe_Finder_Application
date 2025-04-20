@@ -30,7 +30,7 @@ const Favourites = () => {
               <div className="flex border m-auto my-5 border-[grey]  bg-white rounded-xl h-[60px] w-[70%] items-center justify-center">
                 <input
                   onChange={(e) => {setInputVal(e.target.value)
-                    console.log("input" , inputVal);}
+                   }
                     
                   }
                   value={inputVal}
@@ -42,9 +42,12 @@ const Favourites = () => {
                   <GoSearch style={{ fontSize: " 1.7rem" }} />
                 </button>
               </div>
-              <div className="flex items-center   px-10 justify-start gap-10 flex-wrap">
+              <div className="flex items-center   px-10 justify-center lg:justify-start gap-10 flex-wrap">
                 {ctx.favourite
-                  .filter((elem) => elem.title.includes(inputVal))
+                  .filter((elem) =>{
+                    console.log("inputval" , inputVal);
+                    
+                    return elem.title.toLowerCase().includes(inputVal.toLowerCase())})
                   .map((ele, i) => {
                     console.log("ele", ele);
                     console.log("input", inputVal);

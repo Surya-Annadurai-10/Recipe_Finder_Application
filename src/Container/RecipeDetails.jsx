@@ -22,7 +22,7 @@ const RecipeDetails = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const apiKey = "2e9c02b184c542ca9d95a167c25d9624";
+        const apiKey = "d982f91bfba3486da1932852f2a58199";
 
         const res = await axios.get(
           `https://api.spoonacular.com/recipes/${params.id}/information?includeNutrition=true&apiKey=${apiKey}`
@@ -62,38 +62,18 @@ const RecipeDetails = () => {
     isLoading ? <div className="w-full h-[90vh] grid place-items-center ">
     <img src={loader} alt="" />
     </div>:  <div className="p-4">
-    {/* <div
-      onClick={() => {
-        setIsFav(true);
-        handleClick(dishDetails.id);
-      }}
-      className="w-[200px] h-[40px] bg-[#FF5200] text-white font-bold grid place-items-center cursor-pointer rounded-md hover:bg-[#FF9500]"
-    >
-      <h1>
-        {isFav ? (
-          <span className="flex items-center justify-center gap-2">
-            Added{" "}
-            <span className="bg-white grid relative place-items-center rounded-full">
-              <FaCheckCircle style={{ color: "green", fontSize: "1.2rem" }} />
-            </span>
-          </span>
-        ) : (
-          "+ Add to Favourites"
-        )}
-      </h1>
-    </div> */}
 
     <div>
-      <h1 className="text-3xl  font-bold py-5">{dishDetails.title}</h1>
-      <div className="flex w-[100%] rounded-md items-start gap-5 justify-center">
-        <div className="w-[50%]">
+      <h1 className="text-2xl md:text-3xl  font-bold py-5">{dishDetails.title}</h1>
+      <div className="flex w-[100%] lg:flex-row flex-col rounded-md items-start gap-5 justify-start">
+        <div className="lg:w-[50%] w-[98%] md:w-[90%] m-auto">
           <img
             className=" w-full rounded-md h-full"
             src={dishDetails.image}
             alt={dishDetails.title}
           />
         </div>
-        <div className="w-[50%]">
+        <div className="lg:w-[50%] w-[98%] md:w-[90%] m-auto">
           <div className=" w-[100%] max-h-[420px]  danger overflow-y-scroll bg-[#ff510046] p-5 rounded">
             <h1 className="font-bold text-3xl pb-3">How to Cook ? </h1>
 
@@ -102,7 +82,7 @@ const RecipeDetails = () => {
               dangerouslySetInnerHTML={{ __html: dishDetails.instructions }}
             ></div>
           </div>
-          <div className="flex items-center p-4 justify-start gap-10">
+          <div className="flex items-center p-4 justify-center lg:justify-start gap-10">
             <div className="flex items-center justify-center flex-col">
               <div className="flex items-center gap-1">
                 <HiCurrencyDollar
@@ -114,7 +94,7 @@ const RecipeDetails = () => {
                   color="orange"
                 />
               </div>
-              <h2 className="font-bold text-xl">
+              <h2 className="font-bold text-center text-xl">
                 $ {dishDetails.pricePerServing} per Serving
               </h2>
             </div>
@@ -122,7 +102,7 @@ const RecipeDetails = () => {
               <div className="flex items-center gap-1">
                 <IoHeartCircleSharp fontSize={"2rem"} color="red" />
               </div>
-              <h2 className="font-bold text-xl">
+              <h2 className="font-bold text-center text-xl">
                 {" "}
                 {dishDetails.aggregateLikes} Likes
               </h2>
@@ -132,7 +112,7 @@ const RecipeDetails = () => {
               <div className="flex items-center gap-1">
                 <MdTimer fontSize={"2rem"} color="purple" />
               </div>
-              <h2 className="font-bold text-xl">
+              <h2 className="font-bold text-center text-xl">
                 Ready in {dishDetails.readyInMinutes} minutes
               </h2>
             </div>
@@ -168,36 +148,47 @@ const RecipeDetails = () => {
         </div>
       </div>
 
-      {
-        dishDetails ? <div>
-        <h1 className="text-4xl font-bold py-5">Nutritional Information :</h1>
-        <ul>
-          <h3>
-            <span className="font-bold"> Carbohydrates : </span>
-            {Math.round(dishDetails.nutrition.caloricBreakdown?.percentCarbs)}
-            %
-          </h3>
-          <h3>
-            <span className="font-bold">Fats : </span>{" "}
-            {Math.round(dishDetails?.nutrition.caloricBreakdown?.percentFat)}%
-          </h3>
-          <h3>
-            <span className="font-bold">Proteins : </span>
-            {Math.round(
-              dishDetails?.nutrition.caloricBreakdown?.percentProtein
-            )}
-            %
-          </h3>
-          <h3><span className="font-bold">Health Score : </span>{Math.round(dishDetails?.healthScore)}</h3>
-          <li></li>
-          <li></li>
-          <li></li>
-        </ul>
-      </div> : null
-      }
+    
+        <h1 className="font-bold text-2xl md:text-4xl py-4">Nutritional Information :</h1>
+        <table className="md:w-[80%] m-auto w-[100%]">
+          <thead className="bg-[#FF5200]  text-white">
+            <th className="text-xl md:text-3xl py-3">Nutritions</th>
+            <th className="text-xl md:text-3xl py-3">per serving</th>
+          </thead>
+          <tbody className="bg-[#ff51004b] px-3 py-4 text-xl md:text-xl">
+                <tr>
+                  <td className="font-bold py-2">Carbohydrates</td>
+                  <td> {Math.round(dishDetails.nutrition.caloricBreakdown?.percentCarbs)} %</td>
+                </tr>
+                <tr>
+                  <td className="font-bold py-2">Fats</td>
+                  <td> {Math.round(dishDetails?.nutrition.caloricBreakdown?.percentFat)} %</td>
+                </tr>
+                <tr>
+                  <td className="font-bold py-2">Proteins</td>
+                  <td> {Math.round(dishDetails?.nutrition.caloricBreakdown?.percentFat)} %</td>
+                </tr>
+                <tr>
+                  <td className="font-bold py-2">Health Score</td>
+                  <td> {Math.round(dishDetails?.healthScore)}</td>
+                </tr>
+
+                {
+          dishDetails.nutrition.nutrients.map((ele ,i) =>{
+            return <tr key={`${ele.amount}_${ele.percentOfDailyNeeds}_{i}`}>
+              <td className="font-bold py-2">{ele.name}</td>
+              <td>{ele.amount} {ele.unit}</td>
+              {/* <h2><span className="font-bold ">{ele.name} : </span>{ele.amount} {ele.unit}</h2> */}
+            </tr>
+          })
+        }
+
+          </tbody>
+        </table>
+      
 
 
-      <div>
+      {/* <div>
         {
           dishDetails.nutrition.nutrients.map((ele ,i) =>{
             return <div key={`${ele.amount}_${ele.percentOfDailyNeeds}_{i}`}>
@@ -205,7 +196,7 @@ const RecipeDetails = () => {
             </div>
           })
         }
-      </div>
+      </div> */}
     </div>
   </div>
    }
@@ -214,3 +205,27 @@ const RecipeDetails = () => {
 };
 
 export default RecipeDetails;
+
+{/* <div>
+<h1 className="text-4xl font-bold py-5">Nutritional Information :</h1>
+<ul>
+  <h3>
+    <span className="font-bold"> Carbohydrates : </span>
+    {Math.round(dishDetails.nutrition.caloricBreakdown?.percentCarbs)}
+    %
+  </h3>
+  <h3>
+    <span className="font-bold">Fats : </span>{" "}
+    {Math.round(dishDetails?.nutrition.caloricBreakdown?.percentFat)}%
+  </h3>
+  <h3>
+    <span className="font-bold">Proteins : </span>
+    {Math.round(
+      dishDetails?.nutrition.caloricBreakdown?.percentProtein
+    )}
+    %
+  </h3>
+  <h3><span className="font-bold">Health Score : </span>{Math.round(dishDetails?.healthScore)}</h3>
+ 
+</ul>
+</div>  */}
