@@ -43,3 +43,7 @@ git clone https://github.com/yourusername/recipe-finder-app.git
 cd recipe-finder-app
 npm install 
 npm run dev
+```
+
+---
+Made with ️ ♥️ by Surya Annadurai
