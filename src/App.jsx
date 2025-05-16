@@ -5,7 +5,11 @@ import Home from './Container/Home'
 import RecipeDetails from './Container/RecipeDetails'
 import Favourites from './Container/Favourites'
 import Layout from './Layout'
-import { createContext, useState } from 'react'
+import { createContext, lazy, Suspense, useState } from 'react'
+
+const HomeComponent = lazy(() => import ("./Container/Home"))
+const RecipeDetailsComponent = lazy(() => import ("./Container/RecipeDetails"))
+const FavouritesComponent = lazy(() => import ("./Container/Favourites"))
 
 
 const router = createBrowserRouter([
@@ -14,15 +18,21 @@ const router = createBrowserRouter([
     children : [
       {
         path:"/",
-        element:<Home />
+        element:<Suspense fallback={<div>Loading...</div>}>
+          <HomeComponent />
+        </Suspense>
       },
       {
         path:"/recipeinfo/:id",
-        element :<RecipeDetails/>
+        element :<Suspense fallback={<div>Loading...</div>}>
+          <RecipeDetailsComponent/>
+        </Suspense>
       },
       {
         path:"/favourites",
-        element:<Favourites />
+        element:<Suspense fallback={<div>Loading...</div>}>
+          <FavouritesComponent />
+        </Suspense>
       }
     ]
   }
